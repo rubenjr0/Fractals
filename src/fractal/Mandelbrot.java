@@ -62,7 +62,7 @@ public class Mandelbrot {
                 if (cross && y == coord_to_pos(center_y) || x == coord_to_pos(center_x))
                     color = new Color(255, 0, 0, 1).getRGB();
                 else {
-                    val = (m * 255) / (max_iter - 1);
+                    val = (m * 255) / (max_iter);
                     color = new Color(val, val, val, 1).getRGB();
                 }
                 img.setRGB(x, y, color);
