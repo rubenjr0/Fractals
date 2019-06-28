@@ -1,19 +1,19 @@
 package fractal;
 
 public class Complex {
-    private final double x, y;
+    private final float x, y;
 
     public Complex() {
         this(0, 0);
     }
 
-    public Complex(double real, double imaginary) {
+    public Complex(float real, float imaginary) {
         x = real;
         y = imaginary;
     }
 
-    public double modulus() {
-        return Math.sqrt(x * x + y * y);
+    public float modulus() {
+        return (float) Math.sqrt(x * x + y * y);
     }
 
     public Complex add(Complex c) {
@@ -33,7 +33,7 @@ public class Complex {
     }
 
     public Complex inverse() {
-        double nx, ny;
+        float nx, ny;
         nx = x / (x * x + y * y);
         ny = -y / (x * x + y * y);
         return new Complex(nx, ny);

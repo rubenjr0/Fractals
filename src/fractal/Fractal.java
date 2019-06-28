@@ -11,8 +11,8 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Fractal {
-    protected double center_x = 0, center_y = 0; // Cambiar el centro
-    protected double zoom = 5; // Cambiar el tamaño
+    protected float center_x = 0, center_y = 0, center; // Cambiar el centro
+    protected float zoom = 5; // Cambiar el tamaño
     protected String name = "mandel", prefix = "",
             pathImg = "D:\\CODE\\Java\\Fractals\\src\\files\\imgs\\",
             pathStg = "D:\\CODE\\Java\\Fractals\\src\\files\\cfg\\",
@@ -23,11 +23,12 @@ public class Fractal {
 
     public Fractal() {
         try (Scanner sc = new Scanner(new File(pathStg + "settings.cfg"))) {
-            center_x = getScanner(sc).nextDouble();
-            center_y = getScanner(sc).nextDouble();
-            zoom = getScanner(sc).nextDouble();
+            center_x = getScanner(sc).nextFloat();
+            center_y = getScanner(sc).nextFloat();
+            zoom = getScanner(sc).nextFloat();
             max_iter = getScanner(sc).nextInt();
             size = getScanner(sc).nextInt();
+            center = size/2;
             autoMaxIte = getScanner(sc).nextBoolean();
             info = getScanner(sc).nextBoolean();
             cross = getScanner(sc).nextBoolean();
@@ -63,15 +64,15 @@ public class Fractal {
         );
     }
 
-    public void moveX(double dir) {
+    public void moveX(float dir) {
         center_x += dir / (zoom * 2);
     }
 
-    public void moveY(double dir) {
+    public void moveY(float dir) {
         center_y += dir / (zoom * 2);
     }
 
-    public void setZoom(double zoom) {
+    public void setZoom(float zoom) {
         this.zoom = zoom;
     }
 
@@ -117,23 +118,18 @@ public class Fractal {
         return bit;
     }
 
-    private int coord_to_pos(double d) {
-        return (int) (d + (double) size / 2);
-    }
-
-    private int f(int x, int y) {
-        double offset_x = center_x + ((double) x / size - 0.5) * (1 / zoom / 0.25);
-        double offset_y = -center_y + ((double) y / size - 0.5) * (1 / zoom / 0.25);
+    private float f(int x, int y) {
+        float offset_x = center_x + ((float) x / size - 0.5f) * (1 / zoom / 0.25f);
+        float offset_y = -center_y + ((float) y / size - 0.5f) * (1 / zoom / 0.25f);
         Complex c = new Complex(offset_x, offset_y);
         Complex z = new Complex();
         int n = 0;
-        while (z.modulus() <= 20 && n < max_iter + 2) {
+        while (z.modulus() <= 2 && n < max_iter) {
             z = z.pow(2).add(c);
             n++;
         }
-        double modulus = z.modulus();
-        double mu = n - Math.log10(Math.log10(modulus)/Math.log10(2));
-        return n < max_iter ? (int) mu : 0;
+        // return (float) (n - Math.log(Math.log(z.modulus()) / Math.log(2)));
+        return n == max_iter ? 0 : n;
     }
 
     public void gen(JProgressBar progressBar) {
@@ -167,22 +163,12 @@ public class Fractal {
     }
 
     private int getColor(int x, int y) {
-        int rgb, r=0, g=0, b=0;
-        if (cross && (y == coord_to_pos(center_y) || x == coord_to_pos(center_x))) {
+        int rgb;
+        if (cross && (y == center || x == center)) {
             rgb = new Color(255, 0, 0, 1).getRGB();
         } else {
-            int mu = f(x, y);
-            if (mu >= max_iter / 2) {
-                r = mu * 255 / max_iter;
-                g = mu / 3 * 255 / max_iter;
-                b = mu / 4 * 255 / max_iter;
-            } else if(mu < max_iter/4)
-                b = mu * 255 / max_iter;
-            if (mu > max_iter / 4)
-                r = mu * 255 / max_iter;
-            if (mu < max_iter / 2)
-                g = mu * 255 / max_iter;
-            rgb = new Color(r, g, b, 1).getRGB();
+            float m = f(x, y);
+            rgb = Color.getHSBColor(m/max_iter, 1f, m).getRGB();
         }
         return rgb;
     }

@@ -23,24 +23,25 @@ class ControlGui {
     public ControlGui() {
         autoItersCheckBox.setSelected(mb.autoMaxIte);
         mb.setCross(true);
+        mb.setInfo(true);
 
         moveLeftButton.addActionListener(e -> {
-            mb.moveX(-1.0);
+            mb.moveX(-1.0f);
             if (autoGenCheckBox.isSelected())
                 generate();
         });
         moveRightButton.addActionListener(e -> {
-            mb.moveX(1.0);
+            mb.moveX(1.0f);
             if (autoGenCheckBox.isSelected())
                 generate();
         });
         moveUpButton.addActionListener(e -> {
-            mb.moveY(1.0);
+            mb.moveY(1.0f);
             if (autoGenCheckBox.isSelected())
                 generate();
         });
         moveDownButton.addActionListener(e -> {
-            mb.moveY(-1.0);
+            mb.moveY(-1.0f);
             if (autoGenCheckBox.isSelected())
                 generate();
         });

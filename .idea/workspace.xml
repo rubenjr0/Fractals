@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f881bd34-a16b-4db1-a086-001688ec5d37" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/cfg/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/cfg/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fractal/Complex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/Complex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fractal/ControlGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/ControlGui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fractal/Fractal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/Fractal.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,24 +20,18 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fractal/BatchGen.java">
+        <entry file="file://$PROJECT_DIR$/src/fractal/Fractal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+            <state relative-caret-position="237">
+              <caret line="130" column="56" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/fractal/Fractal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-252">
-              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/files/imgs/mandel.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
@@ -42,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/files/cfg/settings.cfg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+            <state relative-caret-position="140">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -51,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fractal/ControlGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1708">
-              <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+            <state>
+              <caret selection-end-line="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,13 +76,14 @@
         <option value="$PROJECT_DIR$/.idea/kotlinc.xml" />
         <option value="$PROJECT_DIR$/src/fractal/Main.java" />
         <option value="$PROJECT_DIR$/src/fractal/BatchGen.java" />
+        <option value="$PROJECT_DIR$/src/fractal/Complex.java" />
         <option value="$PROJECT_DIR$/src/fractal/ControlGui.java" />
-        <option value="$PROJECT_DIR$/src/files/cfg/settings.cfg" />
         <option value="$PROJECT_DIR$/src/fractal/Fractal.java" />
+        <option value="$PROJECT_DIR$/src/files/cfg/settings.cfg" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -160,7 +158,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BatchGen">
+  <component name="RunManager" selected="Application.ControlGui">
     <configuration name="BatchGen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fractal.BatchGen" />
       <module name="Fractals" />
@@ -177,8 +175,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BatchGen" />
         <item itemvalue="Application.ControlGui" />
+        <item itemvalue="Application.BatchGen" />
       </list>
     </recent_temporary>
   </component>
@@ -192,26 +190,25 @@
       <workItem from="1561682140420" duration="837000" />
       <workItem from="1561716225982" duration="8471000" />
       <workItem from="1561731575184" duration="799000" />
-      <workItem from="1561745377341" duration="209000" />
+      <workItem from="1561745377341" duration="7646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10357000" />
+    <option name="totallyTimeSpent" value="17794000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2767094" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.27555323" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16923077" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.40261152" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32967034" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2078346" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4021978" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -221,7 +218,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Dependency Viewer" order="12" weight="0.32967034" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.3297062" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32967034" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -260,6 +257,16 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/fractal/Fractal.java</url>
+          <line>169</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="((DefaultBoundedRangeModel)progressBar.model).value" custom="javax.swing.DefaultBoundedRangeModel" />
@@ -306,6 +313,20 @@
     <entry file="file://$PROJECT_DIR$/src/files/imgs/dcmc50mandel.png" />
     <entry file="file://$PROJECT_DIR$/src/files/imgs/dcc50mandel.png" />
     <entry file="file://$PROJECT_DIR$/src/files/imgs/jul0mandel.png" />
+    <entry file="file://$PROJECT_DIR$/src/fractal/Complex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-341">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#335#336#0" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+            <element signature="e#429#430#0" expanded="true" />
+            <element signature="e#501#502#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/fractal/BatchGen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -313,17 +334,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/fractal/Fractal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="130" column="56" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/files/cfg/settings.cfg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        <state relative-caret-position="140">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/fractal/ControlGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1708">
-          <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+        <state>
+          <caret selection-end-line="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -332,13 +363,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/files/imgs/mandel.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fractal/Fractal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
     </entry>
   </component>
 </project>
