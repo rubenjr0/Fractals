@@ -14,9 +14,9 @@ public class Fractal {
     protected double center_x = 0, center_y = 0; // Cambiar el centro
     protected double zoom = 5; // Cambiar el tamaño
     protected String name = "mandel", prefix = "",
-            pathImg = "D:\\CODE\\Java\\Fractals\\src\\files\\Fractals\\imgs\\",
-            pathStg = "D:\\CODE\\Java\\Fractals\\src\\files\\Fractals\\cfg\\",
-            pathSave = "D:\\CODE\\Java\\Fractals\\src\\files\\Fractals\\imgs\\";
+            pathImg = "D:\\CODE\\Java\\Fractals\\src\\files\\imgs\\",
+            pathStg = "D:\\CODE\\Java\\Fractals\\src\\files\\cfg\\",
+            pathSave = "D:\\CODE\\Java\\Fractals\\src\\files\\cfg\\";
     protected int max_iter = 34;
     protected int size = 800;
     protected boolean autoMaxIte, info, cross, nameSize, nameIter, nameZoom;
@@ -127,11 +127,13 @@ public class Fractal {
         Complex c = new Complex(offset_x, offset_y);
         Complex z = new Complex();
         int n = 0;
-        while (z.modulus() <= 2 && n < max_iter) {
+        while (z.modulus() <= 20 && n < max_iter + 2) {
             z = z.pow(2).add(c);
             n++;
         }
-        return n < max_iter ? n : 0;
+        double modulus = z.modulus();
+        double mu = n - Math.log10(Math.log10(modulus)/Math.log10(2));
+        return n < max_iter ? (int) mu : 0;
     }
 
     public void gen(JProgressBar progressBar) {
@@ -140,7 +142,6 @@ public class Fractal {
         BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
         File file = new File(genName());
         for (int y = 0; y < size; y++) {
-            int color;
             if (info) {
                 double progress = (double) y / size * 100;
                 if (progressBar != null)
@@ -149,13 +150,11 @@ public class Fractal {
                     System.out.println(progress);
             }
             for (int x = 0; x < size; x++) {
-                if (cross && (y == coord_to_pos(center_y) || x == coord_to_pos(center_x)))
-                    color = new Color(255, 0, 0, 1).getRGB();
-                else
-                    color = getColor(f(x, y));
-                img.setRGB(x, y, color);
+                img.setRGB(x, y, getColor(x, y));
             }
         }
+        if (progressBar != null)
+            progressBar.setValue(0);
         writeImage(img, file);
     }
 
@@ -167,9 +166,25 @@ public class Fractal {
                 ".png";
     }
 
-    private int getColor(int c) {
-        int val = (c * 255) / (max_iter - 1);
-        return new Color(val, 0, 0, 1).getRGB();
+    private int getColor(int x, int y) {
+        int rgb, r=0, g=0, b=0;
+        if (cross && (y == coord_to_pos(center_y) || x == coord_to_pos(center_x))) {
+            rgb = new Color(255, 0, 0, 1).getRGB();
+        } else {
+            int mu = f(x, y);
+            if (mu >= max_iter / 2) {
+                r = mu * 255 / max_iter;
+                g = mu / 3 * 255 / max_iter;
+                b = mu / 4 * 255 / max_iter;
+            } else if(mu < max_iter/4)
+                b = mu * 255 / max_iter;
+            if (mu > max_iter / 4)
+                r = mu * 255 / max_iter;
+            if (mu < max_iter / 2)
+                g = mu * 255 / max_iter;
+            rgb = new Color(r, g, b, 1).getRGB();
+        }
+        return rgb;
     }
 
     private void writeImage(BufferedImage img, File file) {

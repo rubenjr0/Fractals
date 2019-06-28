@@ -22,60 +22,62 @@ class ControlGui {
 
     public ControlGui() {
         autoItersCheckBox.setSelected(mb.autoMaxIte);
+        mb.setCross(true);
 
         moveLeftButton.addActionListener(e -> {
             mb.moveX(-1.0);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
         moveRightButton.addActionListener(e -> {
             mb.moveX(1.0);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
         moveUpButton.addActionListener(e -> {
             mb.moveY(1.0);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
         moveDownButton.addActionListener(e -> {
             mb.moveY(-1.0);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
 
         zoomInButton.addActionListener(e -> {
             mb.setZoom(mb.zoom * 10);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
         zoomOutButton.addActionListener(e -> {
             mb.setZoom(mb.zoom / 10);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
 
-        generateButton.addActionListener(e -> mb.gen(progressBar));
+        generateButton.addActionListener(e -> generate());
 
         moreItersButton.addActionListener(e -> {
             mb.setMax_iter(mb.max_iter * 2);
             mb.autoMaxIte = false;
             autoItersCheckBox.setSelected(false);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
         lessItersButton.addActionListener(e -> {
             mb.setMax_iter(mb.max_iter / 2);
             mb.autoMaxIte = false;
             autoItersCheckBox.setSelected(false);
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
         autoItersCheckBox.addActionListener(e -> {
             mb.autoMaxIte = autoItersCheckBox.isSelected();
             if (autoGenCheckBox.isSelected())
-                mb.gen(progressBar);
+                generate();
         });
+
         saveSettingsButton.addActionListener(e -> {
             try {
                 mb.saveSettings();
@@ -91,5 +93,9 @@ class ControlGui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private void generate() {
+        new Thread(() -> mb.gen(progressBar)).start();
     }
 }
