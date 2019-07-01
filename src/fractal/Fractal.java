@@ -119,8 +119,8 @@ public class Fractal {
     }
 
     private float f(int x, int y) {
-        float offset_x = center_x + ((float) x / size - 0.5f) * (1 / zoom / 0.25f);
-        float offset_y = -center_y + ((float) y / size - 0.5f) * (1 / zoom / 0.25f);
+        float offset_x = (center_x * size * zoom + 4 * x - 2 * size)/(size*zoom);
+        float offset_y = (-center_y * size * zoom + 4 * y - 2 * size)/(size*zoom);
         Complex c = new Complex(offset_x, offset_y);
         Complex z = new Complex();
         int n = 0;
