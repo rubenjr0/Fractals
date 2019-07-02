@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 
 class ControlGui {
     private JCheckBox autoItersCheckBox;
-    private Fractal mb = new Fractal();
     private JButton generateButton;
     private JButton moveLeftButton;
     private JButton moveRightButton;
@@ -19,69 +18,78 @@ class ControlGui {
     private JCheckBox autoGenCheckBox;
     private JButton saveSettingsButton;
     private JProgressBar progressBar;
+    private JLabel xinfo;
+    private JLabel yinfo;
+    private JLabel zoominf;
+    private JLabel iteinf;
 
     public ControlGui() {
-        autoItersCheckBox.setSelected(mb.autoMaxIte);
-        mb.setCross(true);
-        mb.setInfo(true);
+        Fractal.init();
+        autoItersCheckBox.setSelected(Fractal.autoMaxIte);
+        updateXInfo();
+        updateYInfo();
+        updateZoomInfo();
+        updateIterInfo();
+        Fractal.cross = true;
+        Fractal.info = true;
+        Fractal.prefix = "10";
 
         moveLeftButton.addActionListener(e -> {
-            mb.moveX(-1.0f);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.moveX(-1);
+            updateXInfo();
+            isAutoGen();
         });
         moveRightButton.addActionListener(e -> {
-            mb.moveX(1.0f);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.moveX(1);
+            updateXInfo();
+            isAutoGen();
         });
         moveUpButton.addActionListener(e -> {
-            mb.moveY(1.0f);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.moveY(1);
+            updateYInfo();
+            isAutoGen();
         });
         moveDownButton.addActionListener(e -> {
-            mb.moveY(-1.0f);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.moveY(-1);
+            updateYInfo();
+            isAutoGen();
         });
 
         zoomInButton.addActionListener(e -> {
-            mb.setZoom(mb.zoom * 10);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.zoom = Fractal.zoom * 10;
+            updateZoomInfo();
+            isAutoGen();
         });
         zoomOutButton.addActionListener(e -> {
-            mb.setZoom(mb.zoom / 10);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.zoom = Fractal.zoom / 10;
+            updateZoomInfo();
+            isAutoGen();
         });
 
         generateButton.addActionListener(e -> generate());
 
         moreItersButton.addActionListener(e -> {
-            mb.setMax_iter(mb.max_iter * 2);
-            mb.autoMaxIte = false;
+            Fractal.max_iter = Fractal.max_iter * 2;
+            Fractal.autoMaxIte = false;
             autoItersCheckBox.setSelected(false);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            updateIterInfo();
+            isAutoGen();
         });
         lessItersButton.addActionListener(e -> {
-            mb.setMax_iter(mb.max_iter / 2);
-            mb.autoMaxIte = false;
+            Fractal.max_iter = Fractal.max_iter / 2;
+            Fractal.autoMaxIte = false;
             autoItersCheckBox.setSelected(false);
-            if (autoGenCheckBox.isSelected())
-                generate();
+            updateIterInfo();
+            isAutoGen();
         });
         autoItersCheckBox.addActionListener(e -> {
-            mb.autoMaxIte = autoItersCheckBox.isSelected();
-            if (autoGenCheckBox.isSelected())
-                generate();
+            Fractal.autoMaxIte = autoItersCheckBox.isSelected();
+            isAutoGen();
         });
 
         saveSettingsButton.addActionListener(e -> {
             try {
-                mb.saveSettings();
+                Fractal.saveSettings();
             } catch (FileNotFoundException fnfe) {
                 fnfe.printStackTrace();
             }
@@ -96,7 +104,29 @@ class ControlGui {
         frame.setVisible(true);
     }
 
+    private void updateIterInfo() {
+        iteinf.setText(Integer.toString(Fractal.max_iter));
+    }
+
+    private void updateZoomInfo() {
+        zoominf.setText("1E" + Math.log10(Fractal.zoom));
+    }
+
+    private void updateYInfo() {
+        yinfo.setText(Double.toString(Fractal.center_y));
+    }
+
+    private void updateXInfo() {
+        xinfo.setText(Double.toString(Fractal.center_x));
+    }
+
+    private void isAutoGen() {
+        if (autoGenCheckBox.isSelected())
+            generate();
+    }
+
     private void generate() {
-        new Thread(() -> mb.gen(progressBar)).start();
+        new Thread(() -> Fractal.gen(progressBar)).start();
+        updateIterInfo();
     }
 }

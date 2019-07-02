@@ -11,17 +11,17 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Fractal {
-    protected float center_x = 0, center_y = 0, center; // Cambiar el centro
-    protected float zoom = 5; // Cambiar el tamaño
-    protected String name = "mandel", prefix = "",
+    protected static float center_x = 0, center_y = 0, center; // Cambiar el centro
+    protected static float zoom = 5; // Cambiar el tamaño
+    protected static String name = "mandel", prefix = "",
             pathImg = "D:\\CODE\\Java\\Fractals\\src\\files\\imgs\\",
             pathStg = "D:\\CODE\\Java\\Fractals\\src\\files\\cfg\\",
             pathSave = "D:\\CODE\\Java\\Fractals\\src\\files\\cfg\\";
-    protected int max_iter = 34;
-    protected int size = 800;
-    protected boolean autoMaxIte, info, cross, nameSize, nameIter, nameZoom;
+    protected static int max_iter = 34;
+    protected static int size = 800;
+    protected static boolean autoMaxIte, info, cross, nameSize, nameIter, nameZoom;
 
-    public Fractal() {
+    public static void init() {
         try (Scanner sc = new Scanner(new File(pathStg + "settings.cfg"))) {
             center_x = getScanner(sc).nextFloat();
             center_y = getScanner(sc).nextFloat();
@@ -40,7 +40,13 @@ public class Fractal {
         }
     }
 
-    public void saveSettings() throws FileNotFoundException {
+    private static Scanner getScanner(Scanner sc) {
+        Scanner bit = new Scanner(sc.nextLine());
+        bit.next();
+        return bit;
+    }
+
+    public static void saveSettings() throws FileNotFoundException {
         try (
                 PrintWriter pw = new PrintWriter(
                         pathSave + "SAVE_1E" + Math.log10(zoom) + "_" + max_iter + "_.txt"
@@ -54,7 +60,7 @@ public class Fractal {
         }
     }
 
-    private void updateMaxIters() {
+    private static void updateMaxIters() {
         max_iter = (int) (
                 Math.sqrt(
                         2 * Math.sqrt(
@@ -64,63 +70,17 @@ public class Fractal {
         );
     }
 
-    public void moveX(float dir) {
+    public static void moveX(float dir) {
         center_x += dir / (zoom * 2);
     }
 
-    public void moveY(float dir) {
+    public static void moveY(float dir) {
         center_y += dir / (zoom * 2);
     }
 
-    public void setZoom(float zoom) {
-        this.zoom = zoom;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMax_iter(int max_iter) {
-        this.max_iter = max_iter;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public void setInfo(boolean info) {
-        this.info = info;
-    }
-
-    public void setCross(boolean cross) {
-        this.cross = cross;
-    }
-
-    public void setNameSize(boolean nameSize) {
-        this.nameSize = nameSize;
-    }
-
-    public void setNameIter(boolean nameIter) {
-        this.nameIter = nameIter;
-    }
-
-    public void setNameZoom(boolean nameZoom) {
-        this.nameZoom = nameZoom;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    private Scanner getScanner(Scanner sc) {
-        Scanner bit = new Scanner(sc.nextLine());
-        bit.next();
-        return bit;
-    }
-
-    private float f(int x, int y) {
-        float offset_x = center_x + ((float) x / size - 0.5f) * (1 / zoom / 0.25f);
-        float offset_y = -center_y + ((float) y / size - 0.5f) * (1 / zoom / 0.25f);
+    private static float f(int x, int y) {
+        float offset_x = center_x + ((float) x / size - 0.5f) * (4 / zoom);
+        float offset_y = -center_y + ((float) y / size - 0.5f) * (4 / zoom);
         Complex c = new Complex(offset_x, offset_y);
         Complex z = new Complex();
         int n = 0;
@@ -132,7 +92,7 @@ public class Fractal {
         return n == max_iter ? 0 : n;
     }
 
-    public void gen(JProgressBar progressBar) {
+    public static void gen(JProgressBar progressBar) {
         if (autoMaxIte)
             updateMaxIters();
         BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
@@ -154,7 +114,7 @@ public class Fractal {
         writeImage(img, file);
     }
 
-    private String genName() {
+    private static String genName() {
         return pathImg + prefix + name +
                 (nameSize ? ", s=" + size : "") +
                 (nameIter ? ", n=" + max_iter : "") +
@@ -162,7 +122,7 @@ public class Fractal {
                 ".png";
     }
 
-    private int getColor(int x, int y) {
+    private static int getColor(int x, int y) {
         int rgb;
         if (cross && (y == center || x == center)) {
             rgb = new Color(255, 0, 0, 1).getRGB();
@@ -173,7 +133,7 @@ public class Fractal {
         return rgb;
     }
 
-    private void writeImage(BufferedImage img, File file) {
+    private static void writeImage(BufferedImage img, File file) {
         try {
             ImageIO.write(img, "png", file);
         } catch (IOException ioe) {

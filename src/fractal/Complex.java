@@ -1,7 +1,7 @@
 package fractal;
 
 public class Complex {
-    private final float x, y;
+    protected final float x, y;
 
     public Complex() {
         this(0, 0);
@@ -12,8 +12,8 @@ public class Complex {
         y = imaginary;
     }
 
-    public float modulus() {
-        return (float) Math.sqrt(x * x + y * y);
+    public double modulus() {
+        return Math.sqrt(x * x + y * y);
     }
 
     public Complex add(Complex c) {
@@ -34,8 +34,8 @@ public class Complex {
 
     public Complex inverse() {
         float nx, ny;
-        nx = x / (x * x + y * y);
-        ny = -y / (x * x + y * y);
+        nx = x / x * x + y * y;
+        ny = -y / x * x + y * y;
         return new Complex(nx, ny);
     }
 
