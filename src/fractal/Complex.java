@@ -1,27 +1,27 @@
 package fractal;
 
 public class Complex {
-    protected final float x, y;
+    protected double r, i;
 
     public Complex() {
         this(0, 0);
     }
 
-    public Complex(float real, float imaginary) {
-        x = real;
-        y = imaginary;
+    public Complex(double real, double imaginary) {
+        r = real;
+        i = imaginary;
     }
 
     public double modulus() {
-        return Math.sqrt(x * x + y * y);
+        return Math.sqrt(r * r + i * i);
     }
 
     public Complex add(Complex c) {
-        return new Complex(x + c.x, y + c.y);
+        return new Complex(r + c.r, i + c.i);
     }
 
     public Complex multiply(Complex c) {
-        return new Complex(x * c.x - y * c.y, x * c.y + y * c.x);
+        return new Complex(r * c.r - i * c.i, r * c.i + i * c.r);
     }
 
     // TODO WIP
@@ -33,13 +33,13 @@ public class Complex {
     }
 
     public Complex inverse() {
-        float nx, ny;
-        nx = x / x * x + y * y;
-        ny = -y / x * x + y * y;
+        double nx, ny;
+        nx = r / r * r + i * i;
+        ny = -i / r * r + i * i;
         return new Complex(nx, ny);
     }
 
     public String toString() {
-        return "{" + x + " + " + y + "i} -> " + modulus();
+        return "{" + r + " + " + i + "i} -> " + modulus();
     }
 }

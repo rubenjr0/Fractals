@@ -8,5 +8,12 @@ Fractals.iml
 *.png
 *.jar
 *.rar
-*.xml
+.mp4
+.sh
 .idea/workspace.xml
+
+*.sh
+
+*.mp4
+
+*.cfg

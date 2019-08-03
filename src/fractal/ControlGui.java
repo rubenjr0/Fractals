@@ -35,33 +35,33 @@ class ControlGui {
         Fractal.prefix = "10";
 
         moveLeftButton.addActionListener(e -> {
-            Fractal.moveX(-1);
+            Fractal.moveLeft();
             updateXInfo();
             isAutoGen();
         });
         moveRightButton.addActionListener(e -> {
-            Fractal.moveX(1);
+            Fractal.moveRight();
             updateXInfo();
             isAutoGen();
         });
         moveUpButton.addActionListener(e -> {
-            Fractal.moveY(1);
+            Fractal.moveUp();
             updateYInfo();
             isAutoGen();
         });
         moveDownButton.addActionListener(e -> {
-            Fractal.moveY(-1);
+            Fractal.moveDown();
             updateYInfo();
             isAutoGen();
         });
 
         zoomInButton.addActionListener(e -> {
-            Fractal.zoom = Fractal.zoom * 10;
+            Fractal.zoomIn(10);
             updateZoomInfo();
             isAutoGen();
         });
         zoomOutButton.addActionListener(e -> {
-            Fractal.zoom = Fractal.zoom / 10;
+            Fractal.zoomOut(10);
             updateZoomInfo();
             isAutoGen();
         });
@@ -105,7 +105,7 @@ class ControlGui {
     }
 
     private void updateIterInfo() {
-        iteinf.setText(Integer.toString(Fractal.max_iter));
+        iteinf.setText(Float.toString(Fractal.max_iter));
     }
 
     private void updateZoomInfo() {
