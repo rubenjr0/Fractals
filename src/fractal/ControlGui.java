@@ -25,7 +25,6 @@ class ControlGui {
 
     public ControlGui() {
         Fractal.init();
-        autoItersCheckBox.setSelected(Fractal.autoMaxIte);
         updateXInfo();
         updateYInfo();
         updateZoomInfo();
@@ -35,22 +34,22 @@ class ControlGui {
         Fractal.prefix = "10";
 
         moveLeftButton.addActionListener(e -> {
-            Fractal.moveLeft();
+            Fractal.moveX(-1);
             updateXInfo();
             isAutoGen();
         });
         moveRightButton.addActionListener(e -> {
-            Fractal.moveRight();
+            Fractal.moveX(1);
             updateXInfo();
             isAutoGen();
         });
         moveUpButton.addActionListener(e -> {
-            Fractal.moveUp();
+            Fractal.moveY(1);
             updateYInfo();
             isAutoGen();
         });
         moveDownButton.addActionListener(e -> {
-            Fractal.moveDown();
+            Fractal.moveY(-1);
             updateYInfo();
             isAutoGen();
         });
@@ -70,20 +69,13 @@ class ControlGui {
 
         moreItersButton.addActionListener(e -> {
             Fractal.max_iter = Fractal.max_iter * 2;
-            Fractal.autoMaxIte = false;
-            autoItersCheckBox.setSelected(false);
             updateIterInfo();
             isAutoGen();
         });
         lessItersButton.addActionListener(e -> {
             Fractal.max_iter = Fractal.max_iter / 2;
-            Fractal.autoMaxIte = false;
             autoItersCheckBox.setSelected(false);
             updateIterInfo();
-            isAutoGen();
-        });
-        autoItersCheckBox.addActionListener(e -> {
-            Fractal.autoMaxIte = autoItersCheckBox.isSelected();
             isAutoGen();
         });
 

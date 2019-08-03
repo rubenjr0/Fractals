@@ -6,7 +6,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/files/cfg/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/cfg/settings.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/BatchGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/BatchGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fractal/Complex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/Complex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/ControlGui.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/ControlGui.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/ControlGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/ControlGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/Fractal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/Fractal.java" afterDir="false" />
@@ -110,7 +109,8 @@
       <workItem from="1564759981513" duration="133000" />
       <workItem from="1564760132200" duration="14816000" />
       <workItem from="1564786411208" duration="19902000" />
-      <workItem from="1564840900787" duration="198000" />
+      <workItem from="1564840900787" duration="18006000" />
+      <workItem from="1564864595155" duration="3652000" />
     </task>
     <task id="LOCAL-00001" summary="Functional">
       <created>1562041269959</created>
@@ -161,67 +161,10 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/fractal/ControlGui.java</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((DefaultBoundedRangeModel)progressBar.model).value" custom="javax.swing.DefaultBoundedRangeModel" />
-        <watch expression="BigDecimal.valueOf(zoom).multiply(BigDecimal.valueOf(2))" language="JAVA" />
-        <watch expression="dir.divide(                         BigDecimal.valueOf(zoom).multiply(BigDecimal.valueOf(2))                 )" language="JAVA" />
-        <watch expression="center_x.add(                 dir.divide(                         BigDecimal.valueOf(zoom).multiply(BigDecimal.valueOf(2))                 )         );" language="JAVA" />
-        <watch expression="Fractal.center_x" language="JAVA" />
-      </configuration>
-    </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="breakpointCondition">
-      <expression>
-        <expression-string>val &gt; 2</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="watch">
-      <expression>
-        <expression-string>Fractal.center_x</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>center_x.add(                 dir.divide(                         BigDecimal.valueOf(zoom).multiply(BigDecimal.valueOf(2))                 )         );</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>dir.divide(                         BigDecimal.valueOf(zoom).multiply(BigDecimal.valueOf(2))                 )</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>BigDecimal.valueOf(zoom).multiply(BigDecimal.valueOf(2))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>f(x, y) * 255 / 120</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>f(x, y) * 255</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>f(x, y)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

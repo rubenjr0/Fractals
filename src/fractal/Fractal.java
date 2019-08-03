@@ -9,16 +9,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.zip.CheckedOutputStream;
 
 public class Fractal {
-    protected static double center_x = 0, center_y = 0, center; // Cambiar el centro
+    protected static double center_x = 0, center_y = 0; // Cambiar el centro
     protected static double zoom = 1; // Cambiar el tamaño
     protected static String name = "mandel", prefix = "",
             pathImg = "src/files/imgs/",
             pathFiles = "src/files/cfg/";
-    protected static float max_iter = 34;
-    protected static int size = 800;
-    protected static boolean autoMaxIte, info, cross, nameSize, nameIter, nameZoom;
+    protected static float max_iter = 18;
+    protected static int size, center;
+    protected static boolean info, cross, nameSize, nameIter, nameZoom;
 
     public static void init() {
         try (Scanner sc = new Scanner(new File(pathFiles + "settings.cfg"))) {
@@ -28,7 +29,6 @@ public class Fractal {
             max_iter = getScanner(sc).nextInt();
             size = getScanner(sc).nextInt();
             center = size / 2;
-            autoMaxIte = getScanner(sc).nextBoolean();
             info = getScanner(sc).nextBoolean();
             cross = getScanner(sc).nextBoolean();
             nameSize = getScanner(sc).nextBoolean();
@@ -59,30 +59,12 @@ public class Fractal {
         }
     }
 
-    private static void updateMaxIters() {
-        max_iter = (int) (
-                Math.sqrt(
-                        2 * Math.sqrt(
-                                Math.abs(1 - Math.sqrt(5 * zoom))
-                        )
-                ) * 66.5
-        );
+    public static void moveX(int dir) {
+        center_x += dir / (zoom * 2);
     }
 
-    public static void moveLeft() {
-        center_x += -1 / (zoom * 2);
-    }
-
-    public static void moveRight() {
-        center_x += 1 / (zoom * 2);
-    }
-
-    public static void moveUp() {
-        center_y += 1 / (zoom * 2);
-    }
-
-    public static void moveDown() {
-        center_y += -1 / (zoom * 2);
+    public static void moveY(int dir) {
+        center_y += dir / (zoom * 2);
     }
 
     public static void zoomIn(double k) {
@@ -98,35 +80,43 @@ public class Fractal {
     }
 
     private static boolean cardioBulbCheck(int x, int y) {
-        return Math.pow(x + 1, 2) + Math.pow(y, 2) <= 1 / 16;
+        return Math.pow(x + 1, 2) + Math.pow(y, 2) <= 1f / 16f;
     }
 
-    private static float f(int x, int y) {
+    private static double f(int x, int y) {
         float n = 0;
         if (!cardioBulbCheck(x, y)) {
             double k = 4f / zoom;
             double x0 = center_x + scalate(x, k);
             double y0 = -center_y + scalate(y, k);
-            Complex c = new Complex(x0, y0);
-            Complex z = new Complex();
-
-            while (z.modulus() <= 4 && n < max_iter) {
-                z = z.multiply(z).add(c);
+            double zr = 0, zi = 0;
+            double zrsqr = zr * zr;
+            double zisqr = zi * zi;
+            while ((zrsqr + zisqr <= 16) && (n < max_iter)) {
+                double zitemp = zr * zi;
+                zitemp += zitemp;
+                zitemp += y0;
+                double zrtemp = zrsqr - zisqr + x0;
+                if (zr == zrtemp && zi == zitemp) {
+                    n = max_iter;
+                    break;
+                }
+                zr = zrtemp;
+                zi = zitemp;
+                zrsqr = zr * zr;
+                zisqr = zi * zi;
                 n++;
             }
             if (n < max_iter) {
-                float log_zn = (float) Math.log(z.modulus()) / 2;
+                float log_zn = (float) Math.log(zrsqr + zisqr) / 30;
                 float nu = (float) (Math.log(log_zn / Math.log(2)) / Math.log(2));
                 n += 1 - nu;
             }
         }
-        //return (float) (n +1- (Math.log(Math.log(z.modulus()))) / Math.log(2)) / max_iter;
         return n / (max_iter);
     }
 
     public static void gen(JProgressBar progressBar) {
-        if (autoMaxIte)
-            updateMaxIters();
         BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
         File file = new File(genName());
         for (int y = 0; y < size; y++) {
@@ -138,7 +128,9 @@ public class Fractal {
                     System.out.println(progress);
             }
             for (int x = 0; x < size; x++) {
-                img.setRGB(x, y, getColor(x, y));
+
+                int color = getColor(x, y);
+                img.setRGB(x, y, color);
             }
         }
         if (progressBar != null)
@@ -163,9 +155,9 @@ public class Fractal {
         if (cross && (y == center || x == center)) {
             rgb = new Color(255, 0, 0, 1).getRGB();
         } else {
-            float m = f(x, y);
+            double m = f(x, y); //Preset M: -0.5*f(x, y);
             rgb = new Color(
-                    (int) (255 * eq(0.5f, 0.5f, 1f, 0.0f, m)),
+                    (int) (255 * eq(0.5f, 0.5f, 1f, 0f, m)),
                     (int) (255 * eq(0.5f, 0.5f, 1f, 0.1f, m)),
                     (int) (255 * eq(0.5f, 0.5f, 1f, 0.2f, m)),
                     1
