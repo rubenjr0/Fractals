@@ -1,10 +1,9 @@
 package fractal;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
 
 class ControlGui {
-    private JCheckBox autoItersCheckBox;
+    private FractalHandler fh;
     private JButton generateButton;
     private JButton moveLeftButton;
     private JButton moveRightButton;
@@ -12,104 +11,128 @@ class ControlGui {
     private JButton moveDownButton;
     private JButton zoomInButton;
     private JButton zoomOutButton;
-    private JButton moreItersButton;
-    private JButton lessItersButton;
+    private JButton m100itersButton;
+    private JButton a100ItersButton;
     private JPanel mainPanel;
     private JCheckBox autoGenCheckBox;
     private JButton saveSettingsButton;
     private JProgressBar progressBar;
-    private JLabel xinfo;
-    private JLabel yinfo;
-    private JLabel zoominf;
-    private JLabel iteinf;
+    private JLabel xInfo;
+    private JLabel yInfo;
+    private JLabel zoomInfo;
+    private JLabel iteInfo;
+    private JButton m10itersButton;
+    private JButton a10ItersButton;
+    private JCheckBox crossCheckBox;
+    private JButton resetButton;
 
     public ControlGui() {
-        Fractal.init();
-        updateXInfo();
-        updateYInfo();
-        updateZoomInfo();
+        fh = new FractalHandler();
+
+        updatexInfo();
+        updateyInfo();
+        updatezoomInfoo();
         updateIterInfo();
-        Fractal.cross = true;
-        Fractal.info = true;
-        Fractal.prefix = "10";
 
         moveLeftButton.addActionListener(e -> {
-            Fractal.moveX(-1);
-            updateXInfo();
+            fh.f.moveCX(-1);
+            updatexInfo();
             isAutoGen();
         });
         moveRightButton.addActionListener(e -> {
-            Fractal.moveX(1);
-            updateXInfo();
+            fh.f.moveCX(1);
+            updatexInfo();
             isAutoGen();
         });
         moveUpButton.addActionListener(e -> {
-            Fractal.moveY(1);
-            updateYInfo();
+            fh.f.moveCY(1);
+            updateyInfo();
             isAutoGen();
         });
         moveDownButton.addActionListener(e -> {
-            Fractal.moveY(-1);
-            updateYInfo();
+            fh.f.moveCY(-1);
+            updateyInfo();
             isAutoGen();
         });
 
         zoomInButton.addActionListener(e -> {
-            Fractal.zoomIn(10);
-            updateZoomInfo();
+            fh.f.setZoom(fh.f.getZoom() / 10);
+            updatezoomInfoo();
             isAutoGen();
         });
         zoomOutButton.addActionListener(e -> {
-            Fractal.zoomOut(10);
-            updateZoomInfo();
+            fh.f.setZoom(fh.f.getZoom() * 10);
+            updatezoomInfoo();
+            isAutoGen();
+        });
+
+        crossCheckBox.addActionListener(e -> {
+            fh.f.setCross(crossCheckBox.isSelected());
             isAutoGen();
         });
 
         generateButton.addActionListener(e -> generate());
 
-        moreItersButton.addActionListener(e -> {
-            Fractal.max_iter = Fractal.max_iter * 2;
+        m100itersButton.addActionListener(e -> {
+            fh.f.setMaxIter(fh.f.getMaxIter() - 100);
             updateIterInfo();
             isAutoGen();
         });
-        lessItersButton.addActionListener(e -> {
-            Fractal.max_iter = Fractal.max_iter / 2;
-            autoItersCheckBox.setSelected(false);
+        m10itersButton.addActionListener(e -> {
+            fh.f.setMaxIter(fh.f.getMaxIter() - 10);
+            updateIterInfo();
+            isAutoGen();
+        });
+        a100ItersButton.addActionListener(e -> {
+            fh.f.setMaxIter(fh.f.getMaxIter() + 100);
+            updateIterInfo();
+            isAutoGen();
+        });
+        a10ItersButton.addActionListener(e -> {
+            fh.f.setMaxIter(fh.f.getMaxIter() + 10);
             updateIterInfo();
             isAutoGen();
         });
 
-        saveSettingsButton.addActionListener(e -> {
-            try {
-                Fractal.saveSettings();
-            } catch (FileNotFoundException fnfe) {
-                fnfe.printStackTrace();
-            }
+        saveSettingsButton.addActionListener(e -> fh.saveSettings(false));
+
+        resetButton.addActionListener(e -> {
+            fh.reset();
+            updatexInfo();
+            updateyInfo();
+            updatezoomInfoo();
+            updateIterInfo();
+            isAutoGen();
         });
     }
 
     public static void main(String[] args) {
+        ControlGui cg = new ControlGui();
         JFrame frame = new JFrame("ControlGui");
-        frame.setContentPane(new ControlGui().mainPanel);
+        frame.setContentPane(cg.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
+    private JPanel getMainPanel() {
+        return mainPanel;
+    }
+
     private void updateIterInfo() {
-        iteinf.setText(Float.toString(Fractal.max_iter));
+        iteInfo.setText(Double.toString(fh.f.getMaxIter()));
     }
 
-    private void updateZoomInfo() {
-        zoominf.setText("1E" + Math.log10(Fractal.zoom));
+    private void updatezoomInfoo() {
+        zoomInfo.setText("1E" + Math.log10(fh.f.getZoom()));
     }
 
-    private void updateYInfo() {
-        yinfo.setText(Double.toString(Fractal.center_y));
+    private void updateyInfo() {
+        yInfo.setText(Double.toString(fh.f.getCY()));
     }
 
-    private void updateXInfo() {
-        xinfo.setText(Double.toString(Fractal.center_x));
+    private void updatexInfo() {
+        xInfo.setText(Double.toString(fh.f.getCX()));
     }
 
     private void isAutoGen() {
@@ -118,7 +141,11 @@ class ControlGui {
     }
 
     private void generate() {
-        new Thread(() -> Fractal.gen(progressBar)).start();
+        // long startTime = System.nanoTime();
+        new Thread(() -> fh.saveImage(fh.generate(progressBar))).start();
+        // long elapsedTime = System.nanoTime() - startTime;
+        // System.out.println(elapsedTime / 1000000f + " ms");
+
         updateIterInfo();
     }
 }

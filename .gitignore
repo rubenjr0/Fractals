@@ -1,7 +1,7 @@
 /.idea
 /out
 Fractals.iml
-/src/files/imgs
+/files/imgs
 *.iml
 *.xml
 *.txt

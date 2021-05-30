@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Fractals:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f881bd34-a16b-4db1-a086-001688ec5d37" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fractal/FractalHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/cfg/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/cfg/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/cfg/settings.cfg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/BatchGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/BatchGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fractal/Complex.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/ControlGui.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/ControlGui.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/ControlGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/ControlGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fractal/Fractal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fractal/Fractal.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,13 +47,12 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>mb.gen(progressBar);</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>generate();</replace>
-    </replaceStrings>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -41,8 +65,14 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="extract.method.default.visibility" value="private" />
@@ -50,22 +80,20 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CODE\Java\Fractals" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CODE\Java\Fractals\files\imgs" />
+      <recent name="D:\CODE\Java\Fractals" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.BatchGen">
+  <component name="RunManager" selected="Application.ControlGui">
     <configuration name="BatchGen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="fractal.BatchGen" />
       <module name="Fractals" />
@@ -80,10 +108,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Fractals.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Fractals_jar/Fractals.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BatchGen" />
         <item itemvalue="Application.ControlGui" />
+        <item itemvalue="Application.BatchGen" />
+        <item itemvalue="JAR Application.Fractals.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -111,6 +144,10 @@
       <workItem from="1564786411208" duration="19902000" />
       <workItem from="1564840900787" duration="18006000" />
       <workItem from="1564864595155" duration="3652000" />
+      <workItem from="1564926679551" duration="17548000" />
+      <workItem from="1569343824515" duration="1173000" />
+      <workItem from="1570029753284" duration="8375000" />
+      <workItem from="1571174786835" duration="323000" />
     </task>
     <task id="LOCAL-00001" summary="Functional">
       <created>1562041269959</created>
@@ -140,13 +177,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
@@ -156,15 +192,49 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
+  <component name="WindowStateProjectService">
+    <state width="1897" height="281" key="GridCell.Tab.0.bottom" timestamp="1622395695971">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622395695971" />
+    <state width="1897" height="281" key="GridCell.Tab.0.center" timestamp="1622395695971">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622395695971" />
+    <state width="1897" height="281" key="GridCell.Tab.0.left" timestamp="1622395695971">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622395695971" />
+    <state width="1897" height="281" key="GridCell.Tab.0.right" timestamp="1622395695971">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="281" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622395695971" />
+    <state width="1897" height="347" key="GridCell.Tab.1.bottom" timestamp="1622393411670">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622393411670" />
+    <state width="1897" height="347" key="GridCell.Tab.1.center" timestamp="1622393411670">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="347" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622393411670" />
+    <state width="1897" height="347" key="GridCell.Tab.1.left" timestamp="1622393411670">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="347" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622393411670" />
+    <state width="1897" height="347" key="GridCell.Tab.1.right" timestamp="1622393411670">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="347" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622393411670" />
+    <state x="460" y="164" key="SettingsEditor" timestamp="1622204899748">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="460" y="164" key="SettingsEditor/0.0.1920.1040/1920.0.1536.824@0.0.1920.1040" timestamp="1622204899748" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/fractal/ControlGui.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="m * 255" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
